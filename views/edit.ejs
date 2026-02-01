@@ -9,14 +9,15 @@
 </head>
 <body>
       <div class="h-full w-full bg-zinc-900 text-white flex flex-col items-center justify-center">
-          <h1 class="text-3xl mb-6 tracking-tighter text-center">Create User</h1>
-       <form action="/create" method="post" class="bg-zinc-800 px-4 py-3 rounded-xl w-80 space-y-5">
+          <h1 class="text-3xl mb-6 tracking-tighter text-center">Update User</h1>
+       <form action="/update/<%=user._id%>" method="post" class="bg-zinc-800 px-4 py-3 rounded-xl w-80 space-y-5">
       <div class="flex flex-col gap-2">
         <label class="text-sm font-medium" for="name">Name</label>
         <input
           type="text"
           name="name"
           placeholder="Enter your name"
+          value="<%= user.name %>"
           class="px-4 py-3 rounded-lg bg-transparent border-2 border-zinc-300 placeholder:text-zinc-300 focus:outline-none focus:border-white"
         >
         </div>
@@ -25,6 +26,7 @@
         <input
           type="email"
           name="email"
+          value="<%= user.email %>"
           placeholder="Enter your email"
           class="px-4 py-3 rounded-lg bg-transparent border-2 border-zinc-300 placeholder:text-zinc-300 focus:outline-none focus:border-white"
         >
@@ -35,14 +37,15 @@
           type="text"
           name="image"
           placeholder="image url"
+          value="<%= user.image %>"
           class="px-4 py-3 rounded-lg bg-transparent border-2 border-zinc-300 placeholder:text-zinc-300 focus:outline-none focus:border-white"
         >
        </div>
-      <input type="submit" class="w-full mt-8 bg-white text-zinc-900 py-3 rounded-lg font-semibold">
+      <input type="submit" value="update user" class="w-full mt-8 bg-yellow-600 text-white-900 py-3 rounded-lg font-semibold">
       </form>
-      <div class="nav mt-5">
+      <!-- <div class="nav mt-5">
         <a class="text-blue-500 text-lg bg-zinc-900 px-10 py-2 rounded-xl hover:bg-zinc-700" href="/read">View Users</a>
-      </div>
+      </div> -->
       </div>
 
 </body>
