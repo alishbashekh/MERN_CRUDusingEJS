@@ -6,15 +6,31 @@ app.set("view engine","ejs");
 app.use(express.json())
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(Path.join(__dirname,'public')));
-require('./db')
-const userModel= require('./userModel')
+require('./Models/db')
+const userModel= require('./Models/userModel')
 
 app.get('/',(req,res)=>{
     res.render("index");
 })
 
-app.get('/read',(req,res)=>{
-    res.render('read')
+app.get('/read', async (req,res)=>{
+    let users = await userModel.find();
+    res.render("read" , {users})
+})
+app.get('/delete/:id', async (req,res)=>{
+    let users = await userModel.findOneAndDelete({_id:req.params.id});
+    res.redirect("/read")
+})
+
+
+app.post('/create', async (req,res)=>{
+    let {name,email,image} = req.body;
+   let createuser = await userModel.create({
+     name:name,
+     email:email,
+     image:image
+    });
+    res.redirect("/read");
 })
 
 app.listen(3000);
